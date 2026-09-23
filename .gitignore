@@ -1,0 +1,6 @@
+config.py
+*.pkl
+*.log
+__pycache__/
+venv/
+.env
