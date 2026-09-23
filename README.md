@@ -17,9 +17,9 @@ Zabbix Agent → Zabbix Server → Python 수집 → MariaDB → Feature 생성 
 
 ## 진행 상황
 - [x] VMware / Ubuntu 설치
-- [ ] 고정 IP 및 SSH 설정
-- [ ] VM2 구축
-- [ ] Zabbix 설치 및 연동
+- [x] 고정 IP 및 SSH 설정
+- [x] VM2 구축
+- [x] Zabbix 설치 및 연동
 - [ ] Python 데이터 수집
 - [ ] Feature 생성
 - [ ] 모델 학습
