@@ -101,6 +101,7 @@ def rule_check(row):
     ssh_fail = g("ssh_fail_mean")
     ssh_ok = g("ssh_ok_mean")
     synrecv = g("synrecv_max")
+    net_out = g("net_out_mean")  # bytes/표본 (30분 평균)
 
     if ssh_fail >= 30 and ssh_ok < 1:
         hits.append(("위험", f"SSH 무차별 대입 의심 (실패 평균 {ssh_fail:.0f}, 성공 없음)"))
@@ -111,6 +112,13 @@ def rule_check(row):
         hits.append(("위험", f"포트 스캔 의심 (SYN-RECV 최대 {synrecv:.0f})"))
     elif synrecv >= 8:
         hits.append(("경고", f"비정상 연결 시도 (SYN-RECV 최대 {synrecv:.0f})"))
+
+    # 데이터 유출(대역폭): 단일 지표(net_out)만 극단적으로 튀면 모델이 희석으로 못 잡아
+    # 룰로 보완. 정상 net_out_mean 상한 ~17MB, 유출 최소 ~59MB → 50/25MB로 분리.
+    if net_out >= 50_000_000:
+        hits.append(("위험", f"대용량 외부 전송 의심 - 데이터 유출 (net_out 평균 {net_out/1e6:.0f}MB)"))
+    elif net_out >= 25_000_000:
+        hits.append(("경고", f"외부 전송량 급증 (net_out 평균 {net_out/1e6:.0f}MB)"))
 
     return hits
 
