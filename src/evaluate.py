@@ -44,6 +44,11 @@ def classify(row, model, scaler, feature_cols):
 
 def main():
     note = sys.argv[1] if len(sys.argv) > 1 else "baseline"
+    # 선택: argv[2]=DANGER_TH, argv[3]=WARN_TH 오버라이드(모델 임계 튜닝 실험용)
+    if len(sys.argv) > 2:
+        D.DANGER_TH = float(sys.argv[2])
+    if len(sys.argv) > 3:
+        D.WARN_TH = float(sys.argv[3])
     model = joblib.load("model/iforest.pkl")
     scaler = joblib.load("model/scaler.pkl")
     with open("model/feature_cols.json") as f:
