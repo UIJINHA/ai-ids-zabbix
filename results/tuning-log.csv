@@ -2,3 +2,4 @@ date,note,contamination,warn_th,danger_th,netout_warn_mb,netout_danger_mb,attack
 2026-10-07 22:24,baseline: 모델+룰(ssh/synrecv/net_out),0.01,0.0,-0.05,50,25,6,6,0,4,8,285,4.21
 2026-10-07 22:37,exp: DANGER -0.06,0.01,0.0,-0.06,50,25,6,6,0,1,11,285,4.21
 2026-10-07 22:37,exp: DANGER -0.06 WARN -0.055,0.01,-0.055,-0.06,50,25,6,6,0,1,1,285,0.7
+2026-10-07 23:19,APPLIED(live): DANGER -0.06,0.01,0.0,-0.06,50,25,6,6,0,1,11,292,4.11

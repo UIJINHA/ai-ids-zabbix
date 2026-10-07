@@ -20,7 +20,7 @@ HOST = "vm2-target"
 WINDOW = "30min"
 
 WARN_TH = 0.0
-DANGER_TH = -0.05
+DANGER_TH = -0.06  # 튜닝(10-07): ab 정상 버스트의 거짓 '위험'(~-0.052) 제거, 공격 최저 -0.067은 유지
 
 GRADE_ORDER = {"정상": 0, "경고": 1, "위험": 2}
 
