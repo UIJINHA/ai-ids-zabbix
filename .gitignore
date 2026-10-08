@@ -6,3 +6,4 @@ venv/
 .env
 *.deb
 model/
+model_backup*
