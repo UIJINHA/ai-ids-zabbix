@@ -21,6 +21,13 @@ Isolation Forest 모델과 룰로 5분마다 이상 여부를 판정한다.
 32개 지표를 종합한 점수에서 신호가 묻혀 놓친다. 이 부분을 룰로 보완한 하이브리드 구조로
 공격 6종을 모두 탐지했다.
 
+![하루 동안의 탐지 결과](docs/img/detection-2026-10-07.png)
+
+하루(2026-10-07) 동안 실제로 공격을 일으켜 본 결과다. 위 그래프는 모델의 이상점수로,
+DoS와 채굴(붉은 구간)에서 점수가 위험 임계 아래로 떨어진다. 무차별 대입과 데이터
+유출(파란 구간)은 점수가 거의 움직이지 않아 모델이 놓치지만, 아래 그래프처럼 로그인
+실패나 네트워크 송신량 한 지표만 크게 튀므로 룰이 잡아낸다.
+
 ---
 
 ## 2. 시스템 구성
@@ -154,7 +161,7 @@ VM1(노트북)이 절전되거나 꺼지면 수집과 탐지가 함께 멈춘다
 cp src/config.example.py src/config.py   # 토큰, DB 비번 채우기
 mysql aiids < sql/schema.sql             # metrics 테이블 생성
 python -m venv venv && source venv/bin/activate
-pip install pandas numpy scikit-learn joblib pymysql requests
+pip install -r requirements.txt
 
 # 1) 수집 (cron이 자동으로 하지만 수동 실행도 가능)
 python src/collect.py
